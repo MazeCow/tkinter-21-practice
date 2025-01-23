@@ -6,6 +6,7 @@ from goal_panel import GoalPanel # Import the custom goal panel widget.
 """
 TO DO: Fix goal panel not appearing.
 """
+<<<<<<< HEAD
 
 
 # Root element.
@@ -15,6 +16,20 @@ root.resizable(False, False) # Make the window unresizable.
 
 
 
+=======
+
+
+
+
+
+# Root element.
+root = tk.Tk()
+root.title("Twenty One") # Set title.
+root.resizable(False, False) # Make the window unresizable.
+
+
+
+>>>>>>> d4415948d58c20b13933c0a1f546099418eca3f9
 # Main container. Might be able to get rid of this and just use the root widget.
 main = tk.Frame(root)
 main.pack(padx=20,pady=20)
@@ -39,7 +54,11 @@ cards_label = tk.Label(main, text="CARDS", font=("Helvetica", 20))
 cards_label.grid(row=0, column=1, columnspan=11, pady=(4,0))
 
 
+<<<<<<< HEAD
 # Instantiate list to hold cards.
+=======
+# Instantiate list to hold cards. Might get rid of this later.
+>>>>>>> d4415948d58c20b13933c0a1f546099418eca3f9
 cards = []
 
 # Create cards 1-11.
@@ -47,8 +66,11 @@ for i in range(1,12):
     card = Card(cards_container, i, "white")
     cards.append(card)
     card.grid(row=1, column=i-1, padx=4, pady=4)
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> d4415948d58c20b13933c0a1f546099418eca3f9
 
 
 root.mainloop()
