@@ -1,60 +1,54 @@
-import tkinter
-from tkinter import ttk
-from tkinter import ttk
-import sv_ttk
+import tkinter as tk
+from card import Card # Import the custom card widget.
+from goal_panel import GoalPanel # Import the custom goal panel widget.
 
 
-# This is where the magic happens
+"""
+TO DO: Fix goal panel not appearing.
+"""
 
 
-root = tkinter.Tk()
-root.title("Tkinter Practice #1")
-
-
-class MyWidget(ttk.Frame):
-    def __init__(self, parent, label_text):
-        super().__init__(master=parent)
-        
-        # Set up grid configuration for the main widget.
-        self.rowconfigure(0, weight=1)
-        self.columnconfigure((0, 1), weight=1)
-
-        # Add a label.
-        ttk.Label(self, text=label_text, font=("Helvetica", 24)).grid(row=0, column=0)
-        
-        # Create a frame for player buttons.
-        player_buttons = ttk.Frame(self)
-        player_buttons.grid(row=1, column=0, sticky="nsew")  # Place the frame.
-        
-        # Configure columns within the player buttons frame.
-        player_buttons.columnconfigure(0, weight=1)
-        player_buttons.columnconfigure(1, weight=1)
-        player_buttons.columnconfigure(2, weight=1)
-        
-        # Add buttons to the player buttons frame.
-        btn_user = ttk.Button(player_buttons, text="U", width=3)
-        btn_user.grid(row=0, column=0)
-        
-        btn_none = ttk.Button(player_buttons, text="N", width=3)
-        btn_none.grid(row=0, column=1)
-        
-        btn_enemy = ttk.Button(player_buttons, text="E", width=3)
-        btn_enemy.grid(row=0, column=2)
-
-        # Pack the main widget.
-        self.pack()
-
-        
-        
-        
-
-# button = ttk.Button(root, text="Click me!")
-# button.pack()
+# Root element.
+root = tk.Tk()
+root.title("Twenty One") # Set title.
+root.resizable(False, False) # Make the window unresizable.
 
 
 
-m = MyWidget(root, "1")
-m.pack()
+# Main container. Might be able to get rid of this and just use the root widget.
+main = tk.Frame(root)
+main.pack(padx=20,pady=20)
+main.grid_columnconfigure(0,weight=1)
+main.grid_columnconfigure(1,weight=11)
+
+
+# Goal container label.
+goal_label = tk.Label(main, text="GOAL", font=("Helvetica", 20))
+goal_label.grid(row=0, column=0, pady=(0,4))
+
+# Goal panel.
+goal_panel = GoalPanel(main)
+goal_panel.grid(row=1, column=0)
+
+# Cards container.
+cards_container = tk.Frame(main, pady=4)
+cards_container.grid(row=1, column=1)
+
+# Cards container label.
+cards_label = tk.Label(main, text="CARDS", font=("Helvetica", 20))
+cards_label.grid(row=0, column=1, columnspan=11, pady=(4,0))
+
+
+# Instantiate list to hold cards.
+cards = []
+
+# Create cards 1-11.
+for i in range(1,12):
+    card = Card(cards_container, i, "white")
+    cards.append(card)
+    card.grid(row=1, column=i-1, padx=4, pady=4)
+    
+
 
 
 root.mainloop()
